@@ -48,9 +48,12 @@ public class UsuarioService {
         }
     }
 
+    //Se agrega el metodo actualizarUsuario
     public boolean actualizarUsuario(UsuarioModel usuario, Long id){
         try {
+            //Con este paso le agregamos el id al objeto para poder actualizarlo
             usuario.setId(id);
+            //Aca enviamos el objeto usuario a la Base de datos
             usuarioRepository.save(usuario);
             return true;
         }catch (Exception err){
