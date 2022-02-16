@@ -29,9 +29,21 @@ public class UsuarioController {
         return this.usuarioService.obtenerPorId(id);
     }
 
-    @GetMapping("/query")
-    public ArrayList<UsuarioModel> obtenerUsuarioPorPrioridad(@RequestParam("prioridad") Integer prioridad){
+    @GetMapping(path ="/priority/{prioridad}")
+    public ArrayList<UsuarioModel> obtenerUsuarioPorPrioridad(@PathVariable("prioridad") Integer prioridad){
         return this.usuarioService.obtenerPorPrioridad(prioridad);
+    }
+
+    //Se agrega el Metodo para obtener los usuarios por nombre desde el navegador
+    @GetMapping("/name/{nombre}")
+    public ArrayList<UsuarioModel> obtenerUsuariopPorNombre(@RequestParam("nombre") String nombre){
+        return this.usuarioService.obtenerPorNombre(nombre);
+    }
+
+    //Se agrega el Metodo para obtener los usuarios por nombre desde el navegador
+    @GetMapping("/email/{email}")
+    public ArrayList<UsuarioModel> obtenerUsuarioPorEmail(@RequestParam("email") String email){
+        return this.usuarioService.obtenerPorEmail(email);
     }
 
     @DeleteMapping(path = "/{id}")
@@ -44,6 +56,16 @@ public class UsuarioController {
         }
     }
 
-    
+    //Se agrega el metodo para Actualizar el usuario Por su ID
+    @PutMapping(path = "/{id}")
+    public String actualizarPorId(@RequestBody UsuarioModel usuario, @PathVariable("id") Long id ) {
+        boolean ok = this.usuarioService.actualizarUsuario(usuario, id);
+        if (ok){
+            return "Se Actualizo el usuario con id " + id;
+        }
+        return "No se pudo actualizar el usuario con id " + id;
+    }
+
+
 
 }

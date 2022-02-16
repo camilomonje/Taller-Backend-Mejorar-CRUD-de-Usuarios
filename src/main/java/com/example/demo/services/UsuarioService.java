@@ -39,10 +39,19 @@ public class UsuarioService {
         return usuarioRepository.findByEmail(email);
     }
 
-
     public boolean eliminarUsuario(Long id){
         try {
             usuarioRepository.deleteById(id);
+            return true;
+        }catch (Exception err){
+            return false;
+        }
+    }
+
+    public boolean actualizarUsuario(UsuarioModel usuario, Long id){
+        try {
+            usuario.setId(id);
+            usuarioRepository.save(usuario);
             return true;
         }catch (Exception err){
             return false;

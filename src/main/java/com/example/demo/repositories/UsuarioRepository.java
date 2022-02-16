@@ -12,4 +12,5 @@ public interface UsuarioRepository extends CrudRepository<UsuarioModel, Long> {
     public abstract ArrayList<UsuarioModel> findByNombre(String nombre); //Se agrega Query Method para obtener por Nombre
     public abstract ArrayList<UsuarioModel> findByEmail(String email); //Se agrega Query Method para obtener por Email
 
+
 }
